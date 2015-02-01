@@ -1,0 +1,4 @@
+.spinner { }
+.spinnerLabel { width: 350px; position: relative; left: -50%; margin-top: -8%; color: #999;font-size: 16px; z-index: 999; text-align: center;}
+.displayBlock { display: block !important; }
+.blockMsg[style] {top: 100px !important;}
