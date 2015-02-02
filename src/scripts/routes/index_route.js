@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.IndexRoute = Ember.Route.extend({
+    Application.IndexRoute = Ember.Route.extend({
         beforeModel: function () {
             this._super();
         },

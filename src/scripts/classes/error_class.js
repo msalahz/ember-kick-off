@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.ErrorClass = Ember.Object.extend({
+    Application.ErrorClass = Ember.Object.extend({
         showServerError: function (jqxhr) {
             console.log('showServerError:');
             console.log(jqxhr);

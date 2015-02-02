@@ -54,15 +54,16 @@ var root = {
                 jsFiles: [
                     'src/scripts/app.js',
                     'src/scripts/router.js',
-                    'src/scripts/base/constant.js',
-                    'src/scripts/base/service.js',
+                    'src/scripts/services/service.js',
+                    'src/scripts/classes/constant_class.js',
                     'src/scripts/classes/**/*',
                     'src/scripts/services/**/*',
                     'src/scripts/helpers/**/*',
                     'src/scripts/components/**/*',
                     'src/scripts/routes/**/*',
                     'src/scripts/controllers/**/*',
-                    'src/scripts/views/**/*'
+                    'src/scripts/views/**/*',
+                    'src/scripts/initializers/**/*'
                 ],
                 mapFiles: []
             },
@@ -79,11 +80,10 @@ var root = {
                     'src/bower_components/blockui/jquery.blockUI.js',
                     'src/bower_components/handlebars/handlebars.runtime.js',
                     'src/bower_components/ember/ember.js',
-                    'src/kendo/kendo.all.js',
                     'src/scripts/app.js',
                     'src/scripts/router.js',
-                    'src/scripts/base/constant.js',
-                    'src/scripts/base/service.js',
+                    'src/scripts/services/service.js',
+                    'src/scripts/classes/constant_class.js',
                     'src/scripts/classes/**/*',
                     'src/scripts/services/**/*',
                     'src/scripts/helpers/**/*',
@@ -102,7 +102,6 @@ var root = {
                 dest: root.src + '/styles',
                 output: 'concat.css',
                 cssFiles: [
-                    'src/styles/main.css',
                     'src/styles/block.css',
                     'src/styles/style.css'
                 ],
@@ -117,7 +116,6 @@ var root = {
                     'src/bower_components/jgrowl/jquery.jgrowl.css',
                     'src/kendo/kendo.common.css',
                     'src/kendo/kendo.bootstrap.min.css',
-                    'src/styles/main.css',
                     'src/styles/block.css',
                     'src/styles/style.css'
                 ],
@@ -125,7 +123,6 @@ var root = {
                     'src/bower_components/bootstrap/dist/css/bootstrap.css.map'
                 ]
             }
-
         },
         images: {
             src: {},
@@ -133,24 +130,7 @@ var root = {
                 main: {
                     dest: root.build + '/images',
                     files: ['src/images/**/*']
-                },
-                kendo: {
-                    bootstrap: {
-                        dest: root.build + '/styles/Bootstrap',
-                        files: ['src/kendo/Bootstrap/*']
-                    },
-                    common: {
-                        dest: root.build + '/styles/common',
-                        files: ['src/kendo/common/*']
-                    }
                 }
-            }
-        },
-        fonts: {
-            src: {},
-            build: {
-                dest: root.build + '/fonts',
-                files: ['src/bower_components/bootstrap/dist/fonts/*']
             }
         },
         html: {
@@ -249,35 +229,8 @@ gulp.task('images.main', function () {
         }))
         .pipe(gulp.dest(paths.images.build.main.dest));
 });
-gulp.task('images.kendo.bootstrap', function () {
-    return gulp.src(paths.images.build.kendo.bootstrap.files)
-        .pipe(imagemin({
-            optimizationLevel: 3,
-            progressive: true,
-            interlaced: true,
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest(paths.images.build.kendo.bootstrap.dest));
-});
-gulp.task('images.kendo.common', function () {
-    return gulp.src(paths.images.build.kendo.common.files)
-        .pipe(imagemin({
-            optimizationLevel: 3,
-            progressive: true,
-            interlaced: true,
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest(paths.images.build.kendo.common.dest));
-});
-gulp.task('images', ['images.main', 'images.kendo.bootstrap', 'images.kendo.common']);
-gulp.task('fonts', function () {
-    return gulp.src(paths.fonts.build.files)
-        .pipe(copy(paths.fonts.build.dest, {prefix: 5}))
-        .pipe(notify({message: 'Fonts task complete'}));
-});
+gulp.task('images', ['images.main']);
 gulp.task('html', function () {
-
-
     return gulp.src(paths.html.build.files)
         .pipe(htmlreplace(paths.html.build.output))
         .pipe(gulp.dest(paths.html.build.dest))
@@ -304,7 +257,6 @@ gulp.task('build', ['clean'], function () {
         'scripts',
         'styles',
         'images',
-        'fonts',
         'html'
     );
 });

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.ApplicationController = Ember.Controller.extend({
+    Application.ApplicationController = Ember.Controller.extend({
         currentRoute: 'index',
         // observe current route
         currentPathDidChange: function () {

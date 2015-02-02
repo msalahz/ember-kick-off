@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.UtilitiesClass = Ember.Object.extend({
+    Application.UtilitiesClass = Ember.Object.extend({
         isValidEmail: function (email) {
             var splitted = email.match("^(.+)@(.+)$");
             if (splitted == null) return false;

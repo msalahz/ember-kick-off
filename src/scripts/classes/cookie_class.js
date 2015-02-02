@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.CookieClass = Ember.Object.extend({
+    Application.CookieClass = Ember.Object.extend({
         prefix: 'sprocket_admin_',
         withPrefix: function (key) {
             return this.prefix + key;

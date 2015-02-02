@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.BlockClass = Ember.Object.extend({
+    Application.BlockClass = Ember.Object.extend({
         spin: function (elementId) {
             // add spinner
             var opts = {

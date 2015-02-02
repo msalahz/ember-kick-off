@@ -1,65 +1,30 @@
-var SprocketAdminWeb = window.SprocketAdminWeb = Ember.Application.create({
-    LOG_TRANSITIONS: true,
-    ready: function () {
-
-        // REGISTER OBJECTS
-        SprocketAdminWeb.register('main:constant', SprocketAdminWeb.ConstantObject);
-        SprocketAdminWeb.register('main:service', SprocketAdminWeb.ServiceObject);
-        SprocketAdminWeb.register('class:notify', SprocketAdminWeb.NotifyClass);
-        SprocketAdminWeb.register('class:error', SprocketAdminWeb.ErrorClass);
-        SprocketAdminWeb.register('class:utilities', SprocketAdminWeb.UtilitiesClass);
-        SprocketAdminWeb.register('class:cookie', SprocketAdminWeb.CookieClass);
-        SprocketAdminWeb.register('class:storage', SprocketAdminWeb.StorageClass);
-        SprocketAdminWeb.register('class:block', SprocketAdminWeb.BlockClass);
-        // DEPENDENCY INJECTION FOR CONSTANT OBJECT
-        SprocketAdminWeb.inject('route', 'constant', 'main:constant');
-        SprocketAdminWeb.inject('controller', 'constant', 'main:constant');
-        SprocketAdminWeb.inject('class', 'constant', 'main:constant');
-        SprocketAdminWeb.inject('service', 'constant', 'main:constant');
-        SprocketAdminWeb.inject('main:service', 'constant', 'main:constant');
-        // DEPENDENCY INJECTION FOR Notify OBJECT
-        SprocketAdminWeb.inject('route', 'notify', 'class:notify');
-        SprocketAdminWeb.inject('controller', 'notify', 'class:notify');
-        SprocketAdminWeb.inject('class:error', 'notify', 'class:notify');
-        // DEPENDENCY INJECTION FOR Error OBJECT
-        SprocketAdminWeb.inject('route', 'error', 'class:error');
-        SprocketAdminWeb.inject('controller', 'error', 'class:error');
-        // DEPENDENCY INJECTION FOR Utilities
-        SprocketAdminWeb.inject('route', 'utilities', 'class:utilities');
-        SprocketAdminWeb.inject('controller', 'utilities', 'class:utilities');
-        SprocketAdminWeb.inject('service', 'utilities', 'class:utilities');
-        // DEPENDENCY INJECTION FOR Cookie OBJECT
-        SprocketAdminWeb.inject('route', 'cookie', 'class:cookie');
-        SprocketAdminWeb.inject('controller', 'cookie', 'class:cookie');
-        SprocketAdminWeb.inject('service', 'cookie', 'class:cookie');
-        // DEPENDENCY INJECTION FOR Storage OBJECT
-        SprocketAdminWeb.inject('route', 'storage', 'class:storage');
-        SprocketAdminWeb.inject('controller', 'storage', 'class:storage');
-        // DEPENDENCY INJECTION FOR Block OBJECT
-        SprocketAdminWeb.inject('view', 'blocker', 'class:block');
-        SprocketAdminWeb.inject('controller', 'blocker', 'class:block');
-
-    }
-});
-
-SprocketAdminWeb.Router.map(function () {
-  // Add your routes here
-});
+(function () {
+    'use strict';
+    window.Application = Ember.Application.create({
+        LOG_TRANSITIONS: false,
+        ready: function () { }
+    });
+})();
+(function () {
+    'use strict';
+    Application.Router.map(function () {
+        // Add your routes here
+    });
+})();
+(function () {
+    'use strict';
+    Application.ServiceObject = Ember.Object.extend({});
+})();
 
 (function () {
     'use strict';
-    SprocketAdminWeb.ConstantObject = Ember.Object.extend({
+    Application.ConstantObject = Ember.Object.extend({
         set: function () { }
     });
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.ServiceObject = Ember.Object.extend({});
-})();
-
-(function () {
-    'use strict';
-    SprocketAdminWeb.BlockClass = Ember.Object.extend({
+    Application.BlockClass = Ember.Object.extend({
         spin: function (elementId) {
             // add spinner
             var opts = {
@@ -153,7 +118,7 @@ SprocketAdminWeb.Router.map(function () {
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.CookieClass = Ember.Object.extend({
+    Application.CookieClass = Ember.Object.extend({
         prefix: 'sprocket_admin_',
         withPrefix: function (key) {
             return this.prefix + key;
@@ -172,7 +137,7 @@ SprocketAdminWeb.Router.map(function () {
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.ErrorClass = Ember.Object.extend({
+    Application.ErrorClass = Ember.Object.extend({
         showServerError: function (jqxhr) {
             console.log('showServerError:');
             console.log(jqxhr);
@@ -211,7 +176,7 @@ SprocketAdminWeb.Router.map(function () {
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.NotifyClass = Ember.Object.extend({
+    Application.NotifyClass = Ember.Object.extend({
         closeAll: function () {
             $('#jGrowl').find('.jGrowl-close').click();
         },
@@ -252,12 +217,11 @@ SprocketAdminWeb.Router.map(function () {
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.StorageClass = Ember.Object.extend({});
-    SprocketAdminWeb.StorageClass.reopenClass({});
+    Application.StorageClass = Ember.Object.extend({});
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.UtilitiesClass = Ember.Object.extend({
+    Application.UtilitiesClass = Ember.Object.extend({
         isValidEmail: function (email) {
             var splitted = email.match("^(.+)@(.+)$");
             if (splitted == null) return false;
@@ -283,7 +247,14 @@ SprocketAdminWeb.Router.map(function () {
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.ApplicationRoute = Ember.Route.extend({
+    Application.AuthService = Application.ServiceObject.extend({
+
+    });
+})();
+
+(function () {
+    'use strict';
+    Application.ApplicationRoute = Ember.Route.extend({
         beforeModel: function () {},
         model: function () {},
         setupController: function () {},
@@ -294,7 +265,7 @@ SprocketAdminWeb.Router.map(function () {
 
 (function () {
     'use strict';
-    SprocketAdminWeb.IndexRoute = Ember.Route.extend({
+    Application.IndexRoute = Ember.Route.extend({
         beforeModel: function () {
             this._super();
         },
@@ -308,23 +279,8 @@ SprocketAdminWeb.Router.map(function () {
 })();
 (function () {
     'use strict';
-    SprocketAdminWeb.ApplicationController = Ember.Controller.extend({
+    Application.ApplicationController = Ember.Controller.extend({
         currentRoute: 'index',
-        isHome: function () {
-            return this.get('currentRoute') === 'index';
-        }.property('currentRoute'),
-        isStatus: function () {
-            return this.get('currentRoute') === 'status';
-        }.property('currentRoute'),
-        isDashboard: function () {
-            return this.get('currentRoute') === 'dashboard';
-        }.property('currentRoute'),
-        isForum: function () {
-            return this.get('currentRoute') === 'forum';
-        }.property('currentRoute'),
-        isLogin: function () {
-            return this.get('currentRoute') === 'login';
-        }.property('currentRoute'),
         // observe current route
         currentPathDidChange: function () {
             Ember.run.schedule('afterRender', this, function () {
@@ -333,3 +289,93 @@ SprocketAdminWeb.Router.map(function () {
         }.observes('currentPath')
     });
 })();
+Ember.Application.initializer({
+    name: "appInit",
+    initialize: function (container, application) {
+        // REGISTER SERVICE BASE OBJECT
+        application.register('main:service', Application.ServiceObject);
+    }
+});
+
+Ember.Application.initializer({
+    name:'blockerInit',
+    initialize: function (container,application) {
+        // REGISTER BLOCKER OBJECT
+        application.register('class:block', Application.BlockClass);
+        // DEPENDENCY INJECTION FOR BLOCKER OBJECT
+        application.inject('view', 'blocker', 'class:block');
+        application.inject('controller', 'blocker', 'class:block');
+    }
+});
+Ember.Application.initializer({
+    name:'constantInit',
+    after: 'appInit',
+    initialize: function (container,application) {
+        // REGISTER CONSTANT OBJECT
+        application.register('main:constant', Application.ConstantObject);
+        // DEPENDENCY INJECTION FOR CONSTANT OBJECT
+        application.inject('route', 'constant', 'main:constant');
+        application.inject('controller', 'constant', 'main:constant');
+        application.inject('class', 'constant', 'main:constant');
+        application.inject('service', 'constant', 'main:constant');
+        application.inject('main:service', 'constant', 'main:constant');
+    }
+});
+Ember.Application.initializer({
+    name:'cookieInit',
+    initialize: function (container,application) {
+        // REGISTER COOKIE OBJECT
+        application.register('class:cookie', Application.CookieClass);
+        // DEPENDENCY INJECTION FOR COOKIE OBJECT
+        application.inject('route', 'cookie', 'class:cookie');
+        application.inject('controller', 'cookie', 'class:cookie');
+        application.inject('service', 'cookie', 'class:cookie');
+
+    }
+});
+Ember.Application.initializer({
+    name:'errorInit',
+    initialize: function (container,application) {
+        // REGISTER ERROR OBJECT
+        application.register('class:error', Application.ErrorClass);
+        // DEPENDENCY INJECTION FOR Error OBJECT
+        application.inject('route', 'error', 'class:error');
+        application.inject('controller', 'error', 'class:error');
+    }
+});
+
+Ember.Application.initializer({
+    name:'notifyInit',
+    after:'errorInit',
+    initialize: function (container,application) {
+        // REGISTER NOTIFY OBJECT
+        application.register('class:notify', Application.NotifyClass);
+        // DEPENDENCY INJECTION FOR NOTIFY OBJECT
+        application.inject('route', 'notify', 'class:notify');
+        application.inject('controller', 'notify', 'class:notify');
+        application.inject('class:error', 'notify', 'class:notify');
+    }
+});
+
+Ember.Application.initializer({
+    name:'storageInit',
+    initialize: function (container,application) {
+        // REGISTER STORAGE OBJECT
+        application.register('class:storage', Application.StorageClass);
+        // DEPENDENCY INJECTION FOR STORAGE OBJECT
+        application.inject('route', 'storage', 'class:storage');
+        application.inject('controller', 'storage', 'class:storage');
+    }
+});
+Ember.Application.initializer({
+    name:'utilitiesInit',
+    initialize: function (container,application) {
+        // REGISTER NOTIFY OBJECT
+        application.register('class:utilities', Application.UtilitiesClass);
+        // DEPENDENCY INJECTION FOR Utilities
+        application.inject('route', 'utilities', 'class:utilities');
+        application.inject('controller', 'utilities', 'class:utilities');
+        application.inject('service', 'utilities', 'class:utilities');
+    }
+});
+

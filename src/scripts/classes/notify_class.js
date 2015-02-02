@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    SprocketAdminWeb.NotifyClass = Ember.Object.extend({
+    Application.NotifyClass = Ember.Object.extend({
         closeAll: function () {
             $('#jGrowl').find('.jGrowl-close').click();
         },
