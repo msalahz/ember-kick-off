@@ -31,14 +31,14 @@ $ npm install --global gulp
 # Installation
 
 ##Gulp Plugins
-####Install gulp plugins located in packagecookie_init.json file:
+####Install gulp plugins located in package.json file:
 
 ``` sh
 $ npm install
 ```
 
 ##Bower Packages
-####Install bower packages located in bowercookie_init.json file:
+####Install bower packages located in bower.json file:
 
 ``` sh
 $ bower install
@@ -52,28 +52,11 @@ $ gulp serve
 ```
 
 ####This task responsible for running three tasks
-#####1- ``` $ gulp src.scripts ``` task which concatenate all javascript files inside the following paths :
-'src/scripts/appcookie_init.js',
-'src/scripts/routercookie_init.js',
-'src/scripts/base/constantcookie_init.js',
-'src/scripts/base/sessioncookie_init.js',
-'src/scripts/base/servicecookie_init.js',
-'src/scripts/classes/',
-'src/scripts/services/',
-'src/scripts/helpers/',
-'src/scripts/components/',
-'src/scripts/routes/',
-'src/scripts/controllers/',
-'src/scripts/views/'
-#####into a single file as src/scripts/concatcookie_init.js
+#####1- ``` $ gulp src.scripts ``` task which concatenate all javascript files into a single file as src/scripts/concat.js
 
-#####2- ``` $ gulp src.templates ``` task which compile and concatenate all handlebars template files inside the following path 'src/templates/' into a single file as src/scripts/concat.hbscookie_init.js
+#####2- ``` $ gulp src.templates ``` task which compile and concatenate all handlebars template files inside the following path 'src/templates/' into a single file as src/scripts/concat.hbs.js
 
-#####3- ``` $ gulp src.styles ``` task which concatenate all style files inside the following paths :
-'src/styles/main.css',
-'src/styles/block.css',
-'src/styles/style.css'
-#####into a single file as src/styles/concat.css
+#####3- ``` $ gulp src.styles ``` task which concatenate all style files into a single file as src/styles/concat.css
 
 
 ####default task
